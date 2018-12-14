@@ -42,10 +42,15 @@ class App extends Component {
   }
   _add(){
     let { data } = this.state;
+    let  tareas  = ["Today page", "End of day page", "Notifications & Confirmations", "Modals", "Bother my brother"] 
+    let numeroTareas = tareas.length;
+    let numero=Math.floor(Math.random()* numeroTareas) 
+    
     let newData = [
+
       ...data,
       {
-        name  : "Today page" 
+        name  : tareas[numero]
       }
     ]
     this.setState({ data : newData });
