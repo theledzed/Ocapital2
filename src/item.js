@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Row, Col, Checkbox, Menu, Icon } from 'antd';
+import { Button, Tooltip } from 'antd';
 
-function onChange(e) {
-    console.log(`checked = ${e.target.checked}`);
-  }
- 
 class Item extends Component{
     _remove(){
         if(this.props.onRemove)
@@ -14,10 +10,11 @@ class Item extends Component{
         return (
             
                 <div className="name">
-                    <Checkbox className="checkboxHover"  onChange={onChange} className="item-name">{this.props.data.name}</Checkbox>
-                    <Button className="remove" onClick={this._remove.bind(this)}>
-                    <Icon type="close" />
-                </Button>
+                    <Button size="small" type="danger" icon="check"  style={{   fontSize: 10, color: 'white',  }} className="remove" onClick={this._remove.bind(this)}></Button>
+                    {"\n"}
+                    <Tooltip title="2 days ago"  >
+                        {this.props.data.name}
+                    </Tooltip>
                 <br/>
                 <br/>
                 </div>

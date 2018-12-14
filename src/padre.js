@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import Item from './item';
-import Buutton from './buutton';
-import _ from 'lodash';
 import './App.css';
- import { Button, Row, Col, Checkbox, Menu, Icon } from 'antd';
+ import { Button,  Checkbox, Menu, Icon } from 'antd';
 import 'antd/dist/antd.css';
- 
+import {Badge} from 'react-bootstrap' 
 
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+
+
 function onChange(e) {
   console.log(`checked = ${e.target.checked}`);
 }
@@ -19,13 +17,6 @@ class App extends Component {
     state = {
     current: 'mail',
   }
-
-  // handleClick = (e) => {
-  //   console.log('click ', e);
-  //   this.setState({
-  //     current: e.key,
-  //   });
-
 
   constructor(props){
     super(props);
@@ -49,7 +40,6 @@ class App extends Component {
     this.setState({ data : newData });
  
   }
- 
   _add(){
     let { data } = this.state;
     let newData = [
@@ -59,26 +49,26 @@ class App extends Component {
       }
     ]
     this.setState({ data : newData });
-  }
- 
-
- 
+  } 
   render() {
     return (
       <div className="app">
-
-
-
        <div className="margin" >
            <p className="p1" >Design</p>
         </div> 
         <div className="gg">
         <Menu onClick={this.handleClick}mode="horizontal">
               <Menu.Item key="todos">
-                <Icon type="circle" />Todos
+                <Icon type="circle" />
+                <Badge  style={{ backgroundColor:'#E0E6F8', color:'#2E9AFE'  }} > 11</Badge>
+                {"\n"}
+                Todos   
               </Menu.Item>
               <Menu.Item key="notes">
-                <Icon type="" />Notes
+                <Icon type="" />
+                <Badge  style={{ backgroundColor:'#E0E6F8', color:'#2E9AFE'  }} > 3</Badge>
+                {"\n"}
+                Notes
               </Menu.Item>
               <Menu.Item key="links">
                 <Icon type="" /> Links
@@ -99,7 +89,7 @@ class App extends Component {
           <p className="p2" >Product Planning</p>
           <hr/>
           <br/>
-          <Checkbox onChange={onChange}>Decide how to organize Today page</Checkbox>
+          <Checkbox onChange={onChange}>Decide how to organize Today page {"\n"}  <Badge > 2h</Badge> {"\n"} <Badge>Work</Badge>  </Checkbox>
           <br/>
           <br/>
           <Checkbox onChange={onChange}>Create wireframes for the Today page</Checkbox>
@@ -113,20 +103,6 @@ class App extends Component {
           <p className="p2" >Design</p>
           <hr/>
           <br/>
-           {/* <Checkbox className="checkboxHover"  onChange={onChange}>Project page</Checkbox>
-          <br/>
-          <br/>
-          <Checkbox onChange={onChange}>Today page</Checkbox>
-          <br/>
-          <br/>
-          <Checkbox onChange={onChange}>End of day page</Checkbox>
-          <br/>
-          <br/>
-          <Checkbox onChange={onChange}>Notifications & Confirmations</Checkbox>
-          <br/>
-          <br/>
-          <Checkbox onChange={onChange}>Modals</Checkbox>
-          <br/> */}
           <br/>
           
           {this.state.data.map(
@@ -144,9 +120,13 @@ class App extends Component {
         </div>
         
       </div> 
-
-
+      <div>
+        <Icon type="smile" theme="twoTone" />
+        <Icon type="heart" theme="twoTone" twoToneColor="#eb2f96" />
+        <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" /> 
+      </div>      
       </div>
+
     );
   }
 }
