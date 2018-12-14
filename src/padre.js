@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
+import Item from './item';
+import Buutton from './buutton';
+import _ from 'lodash';
 import './App.css';
-// import { Button, Row, Col, Checkbox, Menu, Icon } from 'antd';
+ import { Button, Row, Col, Checkbox, Menu, Icon } from 'antd';
 import 'antd/dist/antd.css';
-import Padre from './padre'
-import Item from './item'
-import Button from './buutton'
+ 
 
-
-// const SubMenu = Menu.SubMenu;
-// const MenuItemGroup = Menu.ItemGroup;
-// function onChange(e) {
-//   console.log(`checked = ${e.target.checked}`);
-// }
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+function onChange(e) {
+  console.log(`checked = ${e.target.checked}`);
+}
 
 
 class App extends Component {
-
-  // state = {
-  //   current: 'mail',
-  // }
+ 
+    state = {
+    current: 'mail',
+  }
 
   // handleClick = (e) => {
   //   console.log('click ', e);
@@ -26,14 +26,50 @@ class App extends Component {
   //     current: e.key,
   //   });
 
+
+  constructor(props){
+    super(props);
+    this.state = {
+      data : [
+        {
+          name  : "Progect page",
+        }
+      ]
+    }
+  }
+ 
+  _remove(position){
+    let { data } = this.state;
+ 
+    let newData = [
+      ...data.slice(0, position),
+      ...data.slice(position + 1),
+    ]
+ 
+    this.setState({ data : newData });
+ 
+  }
+ 
+  _add(){
+    let { data } = this.state;
+    let newData = [
+      ...data,
+      {
+        name  : "Today page" 
+      }
+    ]
+    this.setState({ data : newData });
+  }
+ 
+
+ 
   render() {
     return (
-      <div className="App">
-
-      <Padre/>
+      <div className="app">
 
 
-         {/* <div className="margin" >
+
+       <div className="margin" >
            <p className="p1" >Design</p>
         </div> 
         <div className="gg">
@@ -77,7 +113,7 @@ class App extends Component {
           <p className="p2" >Design</p>
           <hr/>
           <br/>
-           <Checkbox className="checkboxHover"  onChange={onChange}>Project page</Checkbox>
+           {/* <Checkbox className="checkboxHover"  onChange={onChange}>Project page</Checkbox>
           <br/>
           <br/>
           <Checkbox onChange={onChange}>Today page</Checkbox>
@@ -90,14 +126,29 @@ class App extends Component {
           <br/>
           <br/>
           <Checkbox onChange={onChange}>Modals</Checkbox>
+          <br/> */}
           <br/>
-          <br/>
+          
+          {this.state.data.map(
+            (item,index) =>
+              <Item data={item} key={index} onRemove={ () => this._remove(index)} />
+            )
+          }
+        
+        <div className="footer">
+          <Button  type="dashed"
+            onClick={this._add.bind(this)}
+            name="Add item"><Icon type="plus-circle" theme="twoTone" />Add Item</Button>
+          
         </div>
-      </div> */}
-      </div>
+        </div>
+        
+      </div> 
 
+
+      </div>
     );
   }
 }
-
+ 
 export default App;
