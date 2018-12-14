@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Tooltip } from 'antd';
 
+ 
 class Item extends Component{
     _remove(){
         if(this.props.onRemove)
